@@ -121,6 +121,18 @@ controls = dbc.Container(
                 tooltip={'placement': 'bottom', 'always_visible': False},
                 value=[0.0, 0.003]
             )]),
+        dbc.Card([
+            dbc.Label('Y_c'),
+            dcc.RangeSlider(
+                id='y_c_slider',
+                min=0.1,
+                max=0.9,
+                step=0.05,
+                marks={0.05 * x: f'{0.05 * x:.2f}' if (x % 2 == 0) else ''
+                       for x in range(0, 20, 1)},
+                tooltip={'placement': 'bottom', 'always_visible': False},
+                value=[0.1, 0.9]
+            )]),
         html.Br(),
         dbc.Card([
             dbc.Label('Hover data'),
@@ -180,6 +192,7 @@ app.layout = html.Div([sidebar, content])
     State('z_i_slider', 'value'),
     State('m_i_slider', 'value'),
     State('m_env_slider', 'value'),
+    State('y_c_slider', 'value'),
     State('dropdown_hover_data', 'value'),
 )
 def update_logg_teff(n_clicks,
@@ -188,6 +201,7 @@ def update_logg_teff(n_clicks,
                      z_i_slider_value,
                      m_i_slider_value,
                      m_env_slider_value,
+                     y_c_slider_value,
                      hover_data_value):
     dff = df[(df['z_i'] >= min(z_i_slider_value))
              & (df['z_i'] <= max(z_i_slider_value))]
@@ -195,6 +209,8 @@ def update_logg_teff(n_clicks,
               & (dff['m_i'] <= max(m_i_slider_value))]
     dff = dff[(dff['m_env'] >= min(m_env_slider_value))
               & (dff['m_env'] <= max(m_env_slider_value))]
+    dff = dff[(dff['custom_profile'] >= min(y_c_slider_value))
+              & (dff['custom_profile'] <= max(y_c_slider_value))]
 
     fig = px.scatter(
         data_frame=dff,
