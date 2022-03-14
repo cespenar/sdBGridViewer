@@ -6,20 +6,6 @@ from dash import dcc, html
 from dash.dependencies import Input, Output, State
 from sqlalchemy import create_engine
 
-MATHJAX_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'
-
-external_scripts = [
-    {
-        'type': 'text/javascript',
-        'id': 'MathJax-script',
-        'src': MATHJAX_CDN,
-    },
-]
-
-# -----------------------------------------------------------------------------
-# Helper functions
-
-
 # -----------------------------------------------------------------------------
 # Custom styles
 
@@ -31,7 +17,6 @@ SIDEBAR_STYLE = {
     'bottom': 0,
     'width': '20%',
     'padding': '20px 10px',
-    'background-color': '#f8f9fa',
     'overflow': 'scroll'
 }
 
@@ -43,7 +28,6 @@ CONTENT_STYLE = {
 }
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
-                external_scripts=external_scripts,
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}])
 
@@ -60,7 +44,7 @@ controls = dbc.Container(
     [
         dbc.Card([
             dbc.Label('Select color:'),
-            dcc.Dropdown(
+            dbc.Select(
                 id='dropdown_colors',
                 options=[
                     {'label': 'z_i', 'value': 'z_i'},
@@ -69,11 +53,10 @@ controls = dbc.Container(
                     {'label': 'center_he4', 'value': 'custom_profile'},
                 ],
                 value='m_i',
-                multi=False
             )]),
         dbc.Card([
             dbc.Label('Select symbols:'),
-            dcc.Dropdown(
+            dbc.Select(
                 id='dropdown_symbols',
                 options=[
                     {'label': 'z_i', 'value': 'z_i'},
@@ -82,7 +65,6 @@ controls = dbc.Container(
                     {'label': 'center_he4', 'value': 'custom_profile'},
                 ],
                 value='z_i',
-                multi=False
             )]),
         html.Br(),
         dbc.Card([
@@ -163,12 +145,13 @@ sidebar = html.Div(
         html.Hr(),
         controls
     ],
+    className='bg-light',
     style=SIDEBAR_STYLE,
 )
 
 content_first_row = dbc.Row(
     [
-        dbc.Col(dcc.Graph(id='logg-teff'), md=12)
+        dbc.Col(dcc.Graph(id='logg-teff', mathjax=True), md=12)
     ]
 )
 
