@@ -20,20 +20,27 @@ SIDEBAR_STYLE = {
     'overflow': 'scroll'
 }
 
+
+def prepare_data() -> pd.DataFrame:
+    database = 'data/sdb_grid.db'
+    engine = create_engine(f'sqlite:///{database}')
+    df = pd.read_sql('models', engine)
+    df['Teff'] = 10.0 ** df['log_Teff']
+    df['L'] = 10.0 ** df['log_L']
+    cols_to_remove = ['rot_i', 'fh', 'fhe', 'fsh', 'mlt', 'sc', 'reimers',
+                      'blocker', 'turbulence', 'model_number', 'level',
+                      'log_Teff',
+                      'log_L', 'top_dir', 'log_dir']
+    df = df.drop(columns=cols_to_remove)
+    df.rename(columns={'custom_profile': 'y_c'}, inplace=True)
+    return df
+
+
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}])
 
-database = 'data/sdb_grid.db'
-engine = create_engine(f'sqlite:///{database}')
-df = pd.read_sql('models', engine)
-df['Teff'] = 10.0 ** df['log_Teff']
-df['L'] = 10.0 ** df['log_L']
-cols_to_remove = ['rot_i', 'fh', 'fhe', 'fsh', 'mlt', 'sc', 'reimers',
-                  'blocker', 'turbulence', 'model_number', 'level', 'log_Teff',
-                  'log_L', 'top_dir', 'log_dir']
-df = df.drop(columns=cols_to_remove)
-df.rename(columns={'custom_profile': 'y_c'}, inplace=True)
+df = prepare_data()
 columns = list(df.columns)
 
 hover_data = ['Teff', 'log_g', 'z_i', 'm_i', 'm_env', 'y_c',
