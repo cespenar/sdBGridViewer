@@ -29,8 +29,7 @@ def prepare_data() -> pd.DataFrame:
     df['L'] = 10.0 ** df['log_L']
     cols_to_remove = ['rot_i', 'fh', 'fhe', 'fsh', 'mlt', 'sc', 'reimers',
                       'blocker', 'turbulence', 'model_number', 'level',
-                      'log_Teff',
-                      'log_L', 'top_dir', 'log_dir']
+                      'log_Teff', 'log_L', 'top_dir', 'log_dir']
     df = df.drop(columns=cols_to_remove)
     df.rename(columns={'custom_profile': 'y_c'}, inplace=True)
     return df
