@@ -20,26 +20,20 @@ SIDEBAR_STYLE = {
     'overflow': 'scroll'
 }
 
-
-def prepare_data() -> pd.DataFrame:
-    database = 'data/sdb_grid.db'
-    engine = create_engine(f'sqlite:///{database}')
-    df = pd.read_sql('models', engine)
-    df['Teff'] = 10.0 ** df['log_Teff']
-    df['L'] = 10.0 ** df['log_L']
-    cols_to_remove = ['rot_i', 'fh', 'fhe', 'fsh', 'mlt', 'sc', 'reimers',
-                      'blocker', 'turbulence', 'model_number', 'level',
-                      'log_Teff', 'log_L', 'top_dir', 'log_dir']
-    df = df.drop(columns=cols_to_remove)
-    df.rename(columns={'custom_profile': 'y_c'}, inplace=True)
-    return df
-
-
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}])
 
-df = prepare_data()
+database = 'data/sdb_grid.db'
+engine = create_engine(f'sqlite:///{database}')
+df = pd.read_sql('models', engine)
+df['Teff'] = 10.0 ** df['log_Teff']
+df['L'] = 10.0 ** df['log_L']
+cols_to_remove = ['rot_i', 'fh', 'fhe', 'fsh', 'mlt', 'sc', 'reimers',
+                  'blocker', 'turbulence', 'model_number', 'level',
+                  'log_Teff', 'log_L', 'top_dir', 'log_dir']
+df = df.drop(columns=cols_to_remove)
+df.rename(columns={'custom_profile': 'y_c'}, inplace=True)
 columns = list(df.columns)
 
 hover_data = ['Teff', 'log_g', 'z_i', 'm_i', 'm_env', 'y_c',
@@ -154,19 +148,19 @@ sidebar = html.Div(
     style=SIDEBAR_STYLE,
 )
 
-tab1 = dbc.Row([
+tab_logg_teff = dbc.Row([
     dbc.Col(dcc.Graph(id='logg-teff', mathjax=True), md=12)
 ])
 
-tab2 = dbc.Row([
+tab_lum_teff = dbc.Row([
     dbc.Col(dcc.Graph(id='L-teff', mathjax=True), md=12)
 ])
 
-tab3 = dbc.Row([
+tab_rad_teff = dbc.Row([
     dbc.Col(dcc.Graph(id='R-teff', mathjax=True), md=12)
 ])
 
-tab4 = html.Div([
+tab_custom_plot = html.Div([
     dbc.Row([
         dbc.Col(dcc.Graph(id='custom_plot', mathjax=True), md=12)
     ]),
@@ -187,7 +181,7 @@ tab4 = html.Div([
                 ),
                 dbc.RadioItems(
                     options=[
-                        {'label': 'default', 'value': 1},
+                        {'label': 'Default', 'value': 1},
                         {'label': 'log10(x)', 'value': 2},
                         {'label': 'exp10(x)', 'value': 3},
                     ],
@@ -233,10 +227,10 @@ tab4 = html.Div([
 
 tabs = dbc.Tabs(
     [
-        dbc.Tab(tab1, label='logg vs. Teff'),
-        dbc.Tab(tab2, label='L vs. Teff'),
-        dbc.Tab(tab3, label='R vs. Teff'),
-        dbc.Tab(tab4, label='Custom plot'),
+        dbc.Tab(tab_logg_teff, label='logg vs. Teff'),
+        dbc.Tab(tab_lum_teff, label='L vs. Teff'),
+        dbc.Tab(tab_rad_teff, label='R vs. Teff'),
+        dbc.Tab(tab_custom_plot, label='Custom plot'),
     ]
 )
 
