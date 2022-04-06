@@ -1,6 +1,6 @@
 # sdB Grid Viewer
 
-_sdB Grid Viever_ is the tool to quickly inspect the grid of evolutionary
+_sdB Grid Viewer_ is the tool to quickly inspect the grid of evolutionary
 models of sdB stars calculated for
 the [ARDASTELLA](https://ardastella.up.krakow.pl/) research group.
 
@@ -77,6 +77,6 @@ Options in the menu:
 
 There are three predefined plots available: **logg vs. Teff**, **L vs. Teff**,
 and **R vs. Teff**, and also a **custom plot** that can be customized to show
-any grid columns accessible by _sdB Grid Viever_. The custom plot also allows
+any grid columns accessible by _sdB Grid Viewer_. The custom plot also allows
 user to reverse axes and apply to them the base-10 logarithmic or exponential
 function.
