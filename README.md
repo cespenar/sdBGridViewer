@@ -1,6 +1,6 @@
 # sdB Grid Viever
 
-***
+
 _sdB Grid Viever_ is the tool to quickly inspect the grid of evolutionary
 models of sdB stars calculated for
 the [ARDASTELLA](https://ardastella.up.krakow.pl/) research group.
@@ -40,7 +40,6 @@ The full grid is not publicly available at the moment.
 
 ## Available data
 
-***
 The selection of columns available in _sdB Grid Viewer_:
 
 * **id** - id of a model
@@ -61,11 +60,7 @@ The selection of columns available in _sdB Grid Viewer_:
 * **Teff** - effective temperature of a model
 * **L** - luminosity of a model (solar units)
 
-## Usage
-
-***
-
-### Settings
+## Usage### Settings
 
 Options in the menu:
 
