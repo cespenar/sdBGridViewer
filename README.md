@@ -26,4 +26,4 @@ calculated using the [GYRE](https://github.com/rhdtownsend/gyre) code
 version 5.2.
 
 ## Available plots
-There are three predefined plots available: $$\log\,g$$ vs. $$T_\mathrm{eff)$$
+There are three predefined plots available: $\log\,g$ vs. $$T_\mathrm{eff)$$
