@@ -6,17 +6,7 @@ import plotly.express as px
 from dash import dcc, html, Input, Output, State
 from sqlalchemy import create_engine
 
-# -----------------------------------------------------------------------------
-# Custom styles
-
-# the style arguments for the sidebar.
 SIDEBAR_STYLE = {
-    # 'position': 'fixed',
-    # 'top': 0,
-    # 'left': 0,
-    # 'bottom': 0,
-    # 'width': '20%',
-    # 'padding': '20px 10px',
     'overflow': 'scroll'
 }
 
