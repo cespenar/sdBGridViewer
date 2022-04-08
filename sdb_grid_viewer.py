@@ -29,188 +29,186 @@ columns = list(df.columns)
 hover_data = ['Teff', 'log_g', 'z_i', 'm_i', 'm_env', 'y_c',
               'L', 'radius', 'age']
 
-controls = dbc.Container(
-    [
-        dbc.Card([
-            dbc.Label('Select color:'),
-            dbc.Select(
-                id='dropdown_colors',
-                options=[
-                    {'label': 'z_i', 'value': 'z_i'},
-                    {'label': 'm_i', 'value': 'm_i'},
-                    {'label': 'm_env', 'value': 'm_env'},
-                    {'label': 'center_he4', 'value': 'y_c'},
-                ],
-                value='m_i',
-            )]),
-        dbc.Card([
-            dbc.Label('Select symbols:'),
-            dbc.Select(
-                id='dropdown_symbols',
-                options=[
-                    {'label': 'z_i', 'value': 'z_i'},
-                    {'label': 'm_i', 'value': 'm_i'},
-                    {'label': 'm_env', 'value': 'm_env'},
-                    {'label': 'center_he4', 'value': 'y_c'},
-                ],
-                value='z_i',
-            )]),
-        html.Br(),
-        dbc.Card([
-            dbc.Label('Z_i'),
-            dcc.RangeSlider(
-                id='z_i_slider',
-                min=0.005,
-                max=0.035,
-                step=0.005,
-                marks={0.001 * x: f'{0.001 * x:.3f}' if (x % 10 != 0) else ''
-                       for x in range(5, 40, 5)},
-                tooltip={'placement': 'bottom', 'always_visible': False},
-                value=[0.005, 0.035]
-            )]),
-        dbc.Card([
-            dbc.Label('M_i [Ms]'),
-            dcc.RangeSlider(
-                id='m_i_slider',
-                min=1.0,
-                max=1.8,
-                step=0.05,
-                marks={0.01 * x: f'{0.01 * x:.1f}' if (x % 10 == 0) else ''
-                       for x in range(100, 190, 5)},
-                tooltip={'placement': 'bottom', 'always_visible': False},
-                value=[1.0, 1.5]
-            )]),
-        dbc.Card([
-            dbc.Label('M_env [Ms]'),
-            dcc.RangeSlider(
-                id='m_env_slider',
-                min=0.0,
-                max=0.01,
-                step=0.001,
-                marks={0.001 * x: f'{0.001 * x:.3f}' if (x % 2 == 0) else ''
-                       for x in range(0, 11, 1)},
-                tooltip={'placement': 'bottom', 'always_visible': False},
-                value=[0.0, 0.003]
-            )]),
-        dbc.Card([
-            dbc.Label('Y_c'),
-            dcc.RangeSlider(
-                id='y_c_slider',
-                min=0.1,
-                max=0.9,
-                step=0.05,
-                marks={0.05 * x: f'{0.05 * x:.2f}' if (x % 2 == 0) else ''
-                       for x in range(0, 20, 1)},
-                tooltip={'placement': 'bottom', 'always_visible': False},
-                value=[0.1, 0.9]
-            )]),
-        html.Br(),
-        dbc.Card([
-            dbc.Label('Hover data'),
-            dcc.Dropdown(
-                id='dropdown_hover_data',
-                options=[{'label': x, 'value': x} for x in df.columns],
-                value=hover_data,
-                multi=True
-            )]),
-        html.Br(),
-        dbc.Card([
-            dbc.Label('Target (optional)'),
-            dbc.InputGroup([
-                dbc.InputGroupText('Teff:'),
-                dbc.Input(
-                    id='target_teff',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('+/-'),
-                dbc.Input(
-                    id='target_teff_err',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('K'),
-            ]),
-            dbc.InputGroup([
-                dbc.InputGroupText('logg:'),
-                dbc.Input(
-                    id='target_logg',
-                    inputmode='numeric',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('+/-'),
-                dbc.Input(
-                    id='target_logg_err',
-                    inputmode='numeric',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('(cgs)'),
-            ]),
-            dbc.InputGroup([
-                dbc.InputGroupText('L:'),
-                dbc.Input(
-                    id='target_lum',
-                    inputmode='numeric',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('+/-'),
-                dbc.Input(
-                    id='target_lum_err',
-                    inputmode='numeric',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('Ls'),
-            ]),
-            dbc.InputGroup([
-                dbc.InputGroupText('R:'),
-                dbc.Input(
-                    id='target_rad',
-                    inputmode='numeric',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('+/-'),
-                dbc.Input(
-                    id='target_rad_err',
-                    inputmode='numeric',
-                    type='number',
-                    value=None
-                ),
-                dbc.InputGroupText('Rs'),
-            ]),
-            dbc.RadioItems(
-                options=[{'label': f'{n} sigma', 'value': n} for n in
-                         range(1, 4)],
-                value=1,
-                id='select_sigma',
-                inline=True,
+controls = dbc.Container([
+    dbc.Card([
+        dbc.Label('Select color:'),
+        dbc.Select(
+            id='dropdown_colors',
+            options=[
+                {'label': 'z_i', 'value': 'z_i'},
+                {'label': 'm_i', 'value': 'm_i'},
+                {'label': 'm_env', 'value': 'm_env'},
+                {'label': 'center_he4', 'value': 'y_c'},
+            ],
+            value='m_i',
+        )]),
+    dbc.Card([
+        dbc.Label('Select symbols:'),
+        dbc.Select(
+            id='dropdown_symbols',
+            options=[
+                {'label': 'z_i', 'value': 'z_i'},
+                {'label': 'm_i', 'value': 'm_i'},
+                {'label': 'm_env', 'value': 'm_env'},
+                {'label': 'center_he4', 'value': 'y_c'},
+            ],
+            value='z_i',
+        )]),
+    html.Br(),
+    dbc.Card([
+        dbc.Label('Z_i'),
+        dcc.RangeSlider(
+            id='z_i_slider',
+            min=0.005,
+            max=0.035,
+            step=0.005,
+            marks={0.001 * x: f'{0.001 * x:.3f}' if (x % 10 != 0) else ''
+                   for x in range(5, 40, 5)},
+            tooltip={'placement': 'bottom', 'always_visible': False},
+            value=[0.005, 0.035]
+        )]),
+    dbc.Card([
+        dbc.Label('M_i [Ms]'),
+        dcc.RangeSlider(
+            id='m_i_slider',
+            min=1.0,
+            max=1.8,
+            step=0.05,
+            marks={0.01 * x: f'{0.01 * x:.1f}' if (x % 10 == 0) else ''
+                   for x in range(100, 190, 5)},
+            tooltip={'placement': 'bottom', 'always_visible': False},
+            value=[1.0, 1.5]
+        )]),
+    dbc.Card([
+        dbc.Label('M_env [Ms]'),
+        dcc.RangeSlider(
+            id='m_env_slider',
+            min=0.0,
+            max=0.01,
+            step=0.001,
+            marks={0.001 * x: f'{0.001 * x:.3f}' if (x % 2 == 0) else ''
+                   for x in range(0, 11, 1)},
+            tooltip={'placement': 'bottom', 'always_visible': False},
+            value=[0.0, 0.003]
+        )]),
+    dbc.Card([
+        dbc.Label('Y_c'),
+        dcc.RangeSlider(
+            id='y_c_slider',
+            min=0.1,
+            max=0.9,
+            step=0.05,
+            marks={0.05 * x: f'{0.05 * x:.2f}' if (x % 2 == 0) else ''
+                   for x in range(0, 20, 1)},
+            tooltip={'placement': 'bottom', 'always_visible': False},
+            value=[0.1, 0.9]
+        )]),
+    html.Br(),
+    dbc.Card([
+        dbc.Label('Hover data'),
+        dcc.Dropdown(
+            id='dropdown_hover_data',
+            options=[{'label': x, 'value': x} for x in df.columns],
+            value=hover_data,
+            multi=True
+        )]),
+    html.Br(),
+    dbc.Card([
+        dbc.Label('Target (optional)'),
+        dbc.InputGroup([
+            dbc.InputGroupText('Teff:'),
+            dbc.Input(
+                id='target_teff',
+                type='number',
+                value=None
             ),
+            dbc.InputGroupText('+/-'),
+            dbc.Input(
+                id='target_teff_err',
+                type='number',
+                value=None
+            ),
+            dbc.InputGroupText('K'),
         ]),
-        html.Br(),
-        html.Div([
-            dbc.Button(
-                id='submit_button',
-                n_clicks=0,
-                children='Submit',
-                color='primary',
+        dbc.InputGroup([
+            dbc.InputGroupText('logg:'),
+            dbc.Input(
+                id='target_logg',
+                inputmode='numeric',
+                type='number',
+                value=None
             ),
-        ],
-            className='d-grid gap-2',
+            dbc.InputGroupText('+/-'),
+            dbc.Input(
+                id='target_logg_err',
+                inputmode='numeric',
+                type='number',
+                value=None
+            ),
+            dbc.InputGroupText('(cgs)'),
+        ]),
+        dbc.InputGroup([
+            dbc.InputGroupText('L:'),
+            dbc.Input(
+                id='target_lum',
+                inputmode='numeric',
+                type='number',
+                value=None
+            ),
+            dbc.InputGroupText('+/-'),
+            dbc.Input(
+                id='target_lum_err',
+                inputmode='numeric',
+                type='number',
+                value=None
+            ),
+            dbc.InputGroupText('Ls'),
+        ]),
+        dbc.InputGroup([
+            dbc.InputGroupText('R:'),
+            dbc.Input(
+                id='target_rad',
+                inputmode='numeric',
+                type='number',
+                value=None
+            ),
+            dbc.InputGroupText('+/-'),
+            dbc.Input(
+                id='target_rad_err',
+                inputmode='numeric',
+                type='number',
+                value=None
+            ),
+            dbc.InputGroupText('Rs'),
+        ]),
+        dbc.RadioItems(
+            options=[{'label': f'{n} sigma', 'value': n} for n in
+                     range(1, 4)],
+            value=1,
+            id='select_sigma',
+            inline=True,
+        ),
+    ]),
+    html.Br(),
+    html.Div([
+        dbc.Button(
+            id='submit_button',
+            n_clicks=0,
+            children='Submit',
+            color='primary',
         ),
     ],
+        className='d-grid gap-2',
+    ),
+],
     className='text-center'
 )
 
-sidebar = html.Div(
-    [
-        html.H2('sdB Grid Viewer', className='text-center'),
-        html.Hr(),
-        controls
-    ],
+sidebar = html.Div([
+    html.H2('sdB Grid Viewer', className='text-center'),
+    html.Hr(),
+    controls
+],
     className='bg-light',
     style=SIDEBAR_STYLE,
 )
@@ -382,15 +380,13 @@ tab_about = html.P([
     ''')
 ])
 
-tabs = dbc.Tabs(
-    [
-        dbc.Tab(tab_logg_teff, label='logg vs. Teff'),
-        dbc.Tab(tab_lum_teff, label='L vs. Teff'),
-        dbc.Tab(tab_rad_teff, label='R vs. Teff'),
-        dbc.Tab(tab_custom_plot, label='Custom plot'),
-        dbc.Tab(tab_about, label='About'),
-    ]
-)
+tabs = dbc.Tabs([
+    dbc.Tab(tab_logg_teff, label='logg vs. Teff'),
+    dbc.Tab(tab_lum_teff, label='L vs. Teff'),
+    dbc.Tab(tab_rad_teff, label='R vs. Teff'),
+    dbc.Tab(tab_custom_plot, label='Custom plot'),
+    dbc.Tab(tab_about, label='About'),
+])
 
 layout = html.Div([
     dbc.Row([
@@ -459,7 +455,7 @@ def update_logg_teff(n_clicks,
     fig.update_yaxes(autorange='reversed')
 
     if target_teff and target_teff_err and target_logg and target_logg_err:
-        for sigma in range(1, sigma_range+1):
+        for sigma in range(1, sigma_range + 1):
             fig.add_shape(type='rect',
                           x0=target_teff - sigma * target_teff_err,
                           y0=target_logg - sigma * target_logg_err,
