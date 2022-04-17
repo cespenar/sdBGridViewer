@@ -115,71 +115,91 @@ controls = dbc.Container([
     html.Br(),
     dbc.Card([
         dbc.Label('Target (optional)'),
-        dbc.InputGroup([
-            dbc.InputGroupText('Teff:'),
-            dbc.Input(
-                id='target_teff',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('+/-'),
-            dbc.Input(
-                id='target_teff_err',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('K'),
+        dbc.Card([
+            dbc.InputGroup([
+                dbc.InputGroupText('Teff:'),
+                dbc.Input(
+                    id='target_teff',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('K'),
+            ]),
+            dbc.InputGroup([
+                dbc.InputGroupText('dTeff:'),
+                dbc.Input(
+                    id='target_teff_err',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('K'),
+            ]),
         ]),
-        dbc.InputGroup([
-            dbc.InputGroupText('logg:'),
-            dbc.Input(
-                id='target_logg',
-                inputmode='numeric',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('+/-'),
-            dbc.Input(
-                id='target_logg_err',
-                inputmode='numeric',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('(cgs)'),
+        dbc.Card([
+            dbc.InputGroup([
+                dbc.InputGroupText('logg:'),
+                dbc.Input(
+                    id='target_logg',
+                    inputmode='numeric',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('(cgs)'),
+            ]),
+            dbc.InputGroup([
+                dbc.InputGroupText('dlogg'),
+                dbc.Input(
+                    id='target_logg_err',
+                    inputmode='numeric',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('(cgs)'),
+            ]),
         ]),
-        dbc.InputGroup([
-            dbc.InputGroupText('L:'),
-            dbc.Input(
-                id='target_lum',
-                inputmode='numeric',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('+/-'),
-            dbc.Input(
-                id='target_lum_err',
-                inputmode='numeric',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('Ls'),
+        dbc.Card([
+            dbc.InputGroup([
+                dbc.InputGroupText('L:'),
+                dbc.Input(
+                    id='target_lum',
+                    inputmode='numeric',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('Ls'),
+            ]),
+            dbc.InputGroup([
+                dbc.InputGroupText('dL'),
+                dbc.Input(
+                    id='target_lum_err',
+                    inputmode='numeric',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('Ls'),
+            ]),
         ]),
-        dbc.InputGroup([
-            dbc.InputGroupText('R:'),
-            dbc.Input(
-                id='target_rad',
-                inputmode='numeric',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('+/-'),
-            dbc.Input(
-                id='target_rad_err',
-                inputmode='numeric',
-                type='number',
-                value=None
-            ),
-            dbc.InputGroupText('Rs'),
+        dbc.Card([
+            dbc.InputGroup([
+                dbc.InputGroupText('R:'),
+                dbc.Input(
+                    id='target_rad',
+                    inputmode='numeric',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('Rs'),
+            ]),
+            dbc.InputGroup([
+                dbc.InputGroupText('dR'),
+                dbc.Input(
+                    id='target_rad_err',
+                    inputmode='numeric',
+                    type='number',
+                    value=None
+                ),
+                dbc.InputGroupText('Rs'),
+            ]),
         ]),
         dbc.RadioItems(
             options=[{'label': f'{n} sigma', 'value': n} for n in
@@ -188,6 +208,20 @@ controls = dbc.Container([
             id='select_sigma',
             inline=True,
         ),
+        dbc.Row([
+            dbc.Col([
+                dbc.Label('Select a color:')
+            ]),
+            dbc.Col([
+                dbc.Input(
+                    type='color',
+                    id='colorpicker',
+                    value='#000000',
+                    style={'width': 100, 'height': 40}
+                )
+            ])
+        ],
+            align='center'),
     ]),
     html.Br(),
     html.Div([
@@ -412,6 +446,7 @@ app.layout = layout
     State('target_logg', 'value'),
     State('target_logg_err', 'value'),
     State('select_sigma', 'value'),
+    State('colorpicker', 'value'),
     State('dropdown_hover_data', 'value'),
 )
 def update_logg_teff(n_clicks,
@@ -426,6 +461,7 @@ def update_logg_teff(n_clicks,
                      target_logg,
                      target_logg_err,
                      sigma_range,
+                     box_color,
                      hover_data_value):
     dff = df[(df['z_i'] >= min(z_i_slider_value))
              & (df['z_i'] <= max(z_i_slider_value))]
@@ -461,7 +497,7 @@ def update_logg_teff(n_clicks,
                           y0=target_logg - sigma * target_logg_err,
                           x1=target_teff + sigma * target_teff_err,
                           y1=target_logg + sigma * target_logg_err,
-                          line={'color': 'black', 'width': 2})
+                          line={'color': box_color, 'width': 2})
 
     return fig
 
@@ -475,6 +511,12 @@ def update_logg_teff(n_clicks,
     State('m_i_slider', 'value'),
     State('m_env_slider', 'value'),
     State('y_c_slider', 'value'),
+    State('target_teff', 'value'),
+    State('target_teff_err', 'value'),
+    State('target_lum', 'value'),
+    State('target_lum_err', 'value'),
+    State('select_sigma', 'value'),
+    State('colorpicker', 'value'),
     State('dropdown_hover_data', 'value'),
 )
 def update_lum_teff(n_clicks,
@@ -484,6 +526,12 @@ def update_lum_teff(n_clicks,
                     m_i_slider_value,
                     m_env_slider_value,
                     y_c_slider_value,
+                    target_teff,
+                    target_teff_err,
+                    target_lum,
+                    target_lum_err,
+                    sigma_range,
+                    box_color,
                     hover_data_value):
     dff = df[(df['z_i'] >= min(z_i_slider_value))
              & (df['z_i'] <= max(z_i_slider_value))]
@@ -507,6 +555,15 @@ def update_lum_teff(n_clicks,
     fig.update_layout(height=800)
     fig.update_xaxes(autorange='reversed')
 
+    if target_teff and target_teff_err and target_lum and target_lum_err:
+        for sigma in range(1, sigma_range + 1):
+            fig.add_shape(type='rect',
+                          x0=target_teff - sigma * target_teff_err,
+                          y0=target_lum - sigma * target_lum_err,
+                          x1=target_teff + sigma * target_teff_err,
+                          y1=target_lum + sigma * target_lum_err,
+                          line={'color': box_color, 'width': 2})
+
     return fig
 
 
@@ -519,6 +576,12 @@ def update_lum_teff(n_clicks,
     State('m_i_slider', 'value'),
     State('m_env_slider', 'value'),
     State('y_c_slider', 'value'),
+    State('target_teff', 'value'),
+    State('target_teff_err', 'value'),
+    State('target_rad', 'value'),
+    State('target_rad_err', 'value'),
+    State('select_sigma', 'value'),
+    State('colorpicker', 'value'),
     State('dropdown_hover_data', 'value'),
 )
 def update_radius_teff(n_clicks,
@@ -528,6 +591,12 @@ def update_radius_teff(n_clicks,
                        m_i_slider_value,
                        m_env_slider_value,
                        y_c_slider_value,
+                       target_teff,
+                       target_teff_err,
+                       target_rad,
+                       target_rad_err,
+                       sigma_range,
+                       box_color,
                        hover_data_value):
     dff = df[(df['z_i'] >= min(z_i_slider_value))
              & (df['z_i'] <= max(z_i_slider_value))]
@@ -550,6 +619,15 @@ def update_radius_teff(n_clicks,
     fig.update_layout(legend_orientation='h')
     fig.update_layout(height=800)
     fig.update_xaxes(autorange='reversed')
+
+    if target_teff and target_teff_err and target_rad and target_rad_err:
+        for sigma in range(1, sigma_range + 1):
+            fig.add_shape(type='rect',
+                          x0=target_teff - sigma * target_teff_err,
+                          y0=target_rad - sigma * target_rad_err,
+                          x1=target_teff + sigma * target_teff_err,
+                          y1=target_rad + sigma * target_rad_err,
+                          line={'color': box_color, 'width': 2})
 
     return fig
 
