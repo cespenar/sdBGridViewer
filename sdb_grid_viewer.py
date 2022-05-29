@@ -354,11 +354,11 @@ tab_about = html.P([
         [Goldstein & Townsend 2020](https://ui.adsabs.harvard.edu/abs/2020ApJ...899..116G/abstract))
         , version 5.2.
         
-        The models were calculated for progenitors with initial masses, Mi, in the
-        range of 1.0 − 1.8 Ms, with a step of 0.005 Ms, and metallicities, Z, in the
+        The models were calculated for progenitors with initial masses, $M_\mathrm{i}$, in the
+        range of 1.0 − 1.8 $M_\odot$, with a step of 0.005 $M_\odot$, and metallicities, $Z$, in the
         range of 0.005 − 0.035, with a step of 0.005. The considered envelope masses,
-        Menv, are in the range of 0.0001 − 0.0030 Ms, with a step of 0.0001 Ms, and
-        0.003 − 0.010 Ms, with a step of 0.001 Ms. Central helium abundance, Yc, is in
+        $M_\mathrm{env}$, are in the range of 0.0001 − 0.0030 $M_\odot$, with a step of 0.0001 $M_\odot$, and
+        0.003 − 0.010 $M_\odot$, with a step of 0.001 $M_\odot$. Central helium abundance, $Y_\mathrm{c}$, is in
         the range of 0.9 − 0.1, with a step of 0.05.
         
         The full grid is not publicly available at the moment.
@@ -369,22 +369,23 @@ tab_about = html.P([
         The selection of columns available in _sdB Grid Viewer_:
         
         * **id** - id of a model
-        * **m_i** - initial mass of a progenitor (solar units)
-        * **m_env** - envelope mass of an sdb model (solar units)
-        * **z_i** - initial metallicity of a progenitor
-        * **y_i** - initial helium abundance of a progenitor
+        * **m_i** - initial mass of a progenitor, $M_\mathrm{i}$ ($M_\odot$)
+        * **m_env** - envelope mass of an sdb model, $M_\mathrm{env}$ ($M_\odot$)
+        * **z_i** - initial metallicity of a progenitor, $Z_\mathrm{i}$
+        * **y_i** - initial helium abundance of a progenitor, $Y_\mathrm{i}$
         * **m_he_core** - mass of a helium core of progenitor before removal of the
-          envelope
-        * **log_g** - logarithm of surface gravity of a model (cgs)
-        * **radius** - radius of a model (solar units)
+          envelope, $M_\mathrm{He,\,core}$ ($M_\odot$)
+        * **log_g** - logarithm of surface gravity of a model, $\log\,g$ (cgs)
+        * **radius** - radius of a model, $R$ ($R_\odot$)
         * **age** - total age of a model calculated from the beginning of the PMS
           evolution (years)
-        * **z_surf** - surface metallicity of a model
-        * **y_surf** - surface helium abundance of a model
+        * **z_surf** - surface metallicity of a model, $Z_\mathrm{surf}$
+        * **y_surf** - surface helium abundance of a model, $Y_\mathrm{surf}$
         * **center_he4** - exact central helium abundance of a model
-        * **y_c** - central helium abundance of a model rounded to two decimal points
-        * **Teff** - effective temperature of a model
-        * **L** - luminosity of a model (solar units)
+        * **y_c** - central helium abundance of a model rounded to two decimal points,
+          $Y_\mathrm{c}$
+        * **Teff** - effective temperature of a model, $T_\mathrm{eff}$ (K)
+        * **L** - luminosity of a model, $L$ ($L_\odot$)
         
         ## Usage
         
@@ -411,7 +412,7 @@ tab_about = html.P([
         any grid columns accessible by _sdB Grid Viewer_. The custom plot also allows
         user to reverse axes and apply to them the base-10 logarithmic or exponential
         function.
-    ''')
+    ''', mathjax=True)
 ])
 
 tabs = dbc.Tabs([
