@@ -31,7 +31,7 @@ hover_data = ['Teff', 'log_g', 'z_i', 'm_i', 'm_env', 'y_c',
 
 controls = dbc.Container([
     dbc.Card([
-        dbc.Label('Select color:'),
+        dbc.Label('Select a color:'),
         dbc.Select(
             id='dropdown_colors',
             options=[
@@ -143,7 +143,8 @@ controls = dbc.Container([
                 ),
                 dbc.InputGroupText('K'),
             ]),
-        ]),
+        ],
+            className='mb-2'),
         dbc.Card([
             dbc.InputGroup([
                 dbc.InputGroupText('logg:'),
@@ -167,7 +168,8 @@ controls = dbc.Container([
                 ),
                 dbc.InputGroupText('(cgs)'),
             ]),
-        ]),
+        ],
+            className='mb-2'),
         dbc.Card([
             dbc.InputGroup([
                 dbc.InputGroupText('L:'),
@@ -191,7 +193,8 @@ controls = dbc.Container([
                 ),
                 dbc.InputGroupText('Ls'),
             ]),
-        ]),
+        ],
+            className='mb-2'),
         dbc.Card([
             dbc.InputGroup([
                 dbc.InputGroupText('R:'),
@@ -215,30 +218,33 @@ controls = dbc.Container([
                 ),
                 dbc.InputGroupText('Rs'),
             ]),
-        ]),
-        dbc.RadioItems(
-            options=[{'label': f'{n} sigma', 'value': n} for n in
-                     range(1, 4)],
-            value=1,
-            id='select_sigma',
-            inline=True,
-            persistence=True
-        ),
-        dbc.Row([
-            dbc.Col([
-                dbc.Label('Select a color:')
-            ]),
-            dbc.Col([
-                dbc.Input(
-                    type='color',
-                    id='colorpicker',
-                    value='#000000',
-                    style={'width': 100, 'height': 40},
-                    persistence=True
-                )
-            ])
         ],
-            align='center'),
+            className='mb-2'),
+        dbc.Card([
+            dbc.RadioItems(
+                options=[{'label': f'{n} sigma', 'value': n} for n in
+                         range(1, 4)],
+                value=1,
+                id='select_sigma',
+                inline=True,
+                persistence=True
+            ),
+            dbc.Row([
+                dbc.Col([
+                    dbc.Label('Select a color:')
+                ]),
+                dbc.Col([
+                    dbc.Input(
+                        type='color',
+                        id='colorpicker',
+                        value='#000000',
+                        style={'width': 100, 'height': 40},
+                        persistence=True
+                    )
+                ])
+            ],
+                align='center'),
+        ])
     ]),
     html.Br(),
     html.Div([
