@@ -41,6 +41,7 @@ controls = dbc.Container([
                 {'label': 'center_he4', 'value': 'y_c'},
             ],
             value='m_i',
+            persistence=True
         )]),
     dbc.Card([
         dbc.Label('Select symbols:'),
@@ -53,6 +54,7 @@ controls = dbc.Container([
                 {'label': 'center_he4', 'value': 'y_c'},
             ],
             value='z_i',
+            persistence=True
         )]),
     html.Br(),
     dbc.Card([
@@ -65,7 +67,8 @@ controls = dbc.Container([
             marks={0.001 * x: f'{0.001 * x:.3f}' if (x % 10 != 0) else ''
                    for x in range(5, 40, 5)},
             tooltip={'placement': 'bottom', 'always_visible': False},
-            value=[0.005, 0.035]
+            value=[0.005, 0.035],
+            persistence=True
         )]),
     dbc.Card([
         dbc.Label('M_i [Ms]'),
@@ -77,7 +80,8 @@ controls = dbc.Container([
             marks={0.01 * x: f'{0.01 * x:.1f}' if (x % 10 == 0) else ''
                    for x in range(100, 190, 5)},
             tooltip={'placement': 'bottom', 'always_visible': False},
-            value=[1.0, 1.5]
+            value=[1.0, 1.5],
+            persistence=True
         )]),
     dbc.Card([
         dbc.Label('M_env [Ms]'),
@@ -89,7 +93,8 @@ controls = dbc.Container([
             marks={0.001 * x: f'{0.001 * x:.3f}' if (x % 2 == 0) else ''
                    for x in range(0, 11, 1)},
             tooltip={'placement': 'bottom', 'always_visible': False},
-            value=[0.0, 0.003]
+            value=[0.0, 0.003],
+            persistence=True
         )]),
     dbc.Card([
         dbc.Label('Y_c'),
@@ -101,7 +106,8 @@ controls = dbc.Container([
             marks={0.05 * x: f'{0.05 * x:.2f}' if (x % 2 == 0) else ''
                    for x in range(0, 20, 1)},
             tooltip={'placement': 'bottom', 'always_visible': False},
-            value=[0.1, 0.9]
+            value=[0.1, 0.9],
+            persistence=True
         )]),
     html.Br(),
     dbc.Card([
@@ -110,7 +116,8 @@ controls = dbc.Container([
             id='dropdown_hover_data',
             options=[{'label': x, 'value': x} for x in df.columns],
             value=hover_data,
-            multi=True
+            multi=True,
+            persistence=True
         )]),
     html.Br(),
     dbc.Card([
@@ -121,7 +128,8 @@ controls = dbc.Container([
                 dbc.Input(
                     id='target_teff',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('K'),
             ]),
@@ -130,7 +138,8 @@ controls = dbc.Container([
                 dbc.Input(
                     id='target_teff_err',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('K'),
             ]),
@@ -142,7 +151,8 @@ controls = dbc.Container([
                     id='target_logg',
                     inputmode='numeric',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('(cgs)'),
             ]),
@@ -152,7 +162,8 @@ controls = dbc.Container([
                     id='target_logg_err',
                     inputmode='numeric',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('(cgs)'),
             ]),
@@ -164,7 +175,8 @@ controls = dbc.Container([
                     id='target_lum',
                     inputmode='numeric',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('Ls'),
             ]),
@@ -174,7 +186,8 @@ controls = dbc.Container([
                     id='target_lum_err',
                     inputmode='numeric',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('Ls'),
             ]),
@@ -186,7 +199,8 @@ controls = dbc.Container([
                     id='target_rad',
                     inputmode='numeric',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('Rs'),
             ]),
@@ -196,7 +210,8 @@ controls = dbc.Container([
                     id='target_rad_err',
                     inputmode='numeric',
                     type='number',
-                    value=None
+                    value=None,
+                    persistence=True
                 ),
                 dbc.InputGroupText('Rs'),
             ]),
@@ -207,6 +222,7 @@ controls = dbc.Container([
             value=1,
             id='select_sigma',
             inline=True,
+            persistence=True
         ),
         dbc.Row([
             dbc.Col([
@@ -217,7 +233,8 @@ controls = dbc.Container([
                     type='color',
                     id='colorpicker',
                     value='#000000',
-                    style={'width': 100, 'height': 40}
+                    style={'width': 100, 'height': 40},
+                    persistence=True
                 )
             ])
         ],
