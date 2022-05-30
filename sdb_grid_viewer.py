@@ -251,6 +251,9 @@ controls = dbc.Container([
     ],
         className='d-grid gap-2',
     ),
+    html.Br(),
+    html.Br(),
+    html.Br(),
 ],
     className='text-center'
 )
