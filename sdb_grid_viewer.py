@@ -40,7 +40,7 @@ controls = dbc.Container([
                 {'label': 'm_env', 'value': 'm_env'},
                 {'label': 'center_he4', 'value': 'y_c'},
             ],
-            value='m_i',
+            value='z_i',
             persistence=True
         )]),
     dbc.Card([
@@ -53,7 +53,7 @@ controls = dbc.Container([
                 {'label': 'm_env', 'value': 'm_env'},
                 {'label': 'center_he4', 'value': 'y_c'},
             ],
-            value='z_i',
+            value='m_i',
             persistence=True
         )]),
     html.Br(),
