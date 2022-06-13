@@ -1,1 +1,1 @@
-web: gunicorn app:server
+web: gunicorn sdb_grid_viewer:server
