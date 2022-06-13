@@ -16,6 +16,8 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}])
 
+server = app.server
+
 database = 'data/sdb_grid.db'
 engine = create_engine(f'sqlite:///{database}')
 df = pd.read_sql('models', engine)
