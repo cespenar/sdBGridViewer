@@ -72,6 +72,7 @@ Options in the menu:
 * **M_env** - envelope mass of sdB models in solar units
 * **Y_c** - central helium abundance of sdB models
 * **Hover data** - select parameters shown for data points in the hover menu
+* **Target** - optional parameters of a target star, which allow an error box (up to $3\sigma$) to be plotted over the grid
 
 ### Available plots
 

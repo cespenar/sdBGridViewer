@@ -1,4 +1,4 @@
-_sdB Grid Viewer_ is the tool to quickly inspect the grid of evolutionary
+_sdB Grid Viewer_ is the tool for quick inspection of the grid of evolutionary
 models of sdB stars calculated for
 the [ARDASTELLA](https://ardastella.up.krakow.pl/) research group.
 
@@ -17,7 +17,7 @@ Evolutionary models were calculated using the
 [2015](https://ui.adsabs.harvard.edu/abs/2015ApJS..220...15P/abstract),
 [2018](https://ui.adsabs.harvard.edu/abs/2018ApJS..234...34P/abstract),
 [2019](https://ui.adsabs.harvard.edu/abs/2019ApJS..243...10P/abstract)),
-version 11701, and supplemented by adiabatic non-radial pulsational models
+version 11701, and supplemented by adiabatic non-radial pulsation models
 calculated using the [GYRE](https://github.com/rhdtownsend/gyre) code
 ([Townsend & Teitler 2013](https://ui.adsabs.harvard.edu/abs/2013MNRAS.435.3406T/abstract)
 ,
@@ -78,6 +78,7 @@ Options in the menu:
 * **M_env** - envelope mass of sdB models in solar units
 * **Y_c** - central helium abundance of sdB models
 * **Hover data** - select parameters shown for data points in the hover menu
+* **Target** - optional parameters of a target star, which allow an error box (up to $3\sigma$) to be plotted over the grid
 
 ### Available plots
 
@@ -86,3 +87,11 @@ and **R vs. Teff**, and also a **custom plot** that can be customized to show
 any grid columns accessible by _sdB Grid Viewer_. The custom plot also allows
 user to reverse axes and apply to them the base-10 logarithmic or exponential
 function.
+
+## About the author
+
+***
+_sdB Grid Viewer_ is created and maintained by
+[Jakub Ostrowski](https://github.com/cespenar). The app is built using
+Python [Dash](https://plotly.com) framework and the source code is available
+on [GitHub](https://github.com/cespenar/sdBGridViewer).
