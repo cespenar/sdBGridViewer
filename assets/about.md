@@ -29,7 +29,7 @@ calculated using the [GYRE](https://github.com/rhdtownsend/gyre) code
 The models were calculated for progenitors with initial masses, $M_\mathrm{i}$, in the
 range of 1.0 − 1.8 $M_\odot$, with a step of 0.005 $M_\odot$, and metallicities, $Z_\mathrm{i}$, in the
 range of 0.005 − 0.035, with a step of 0.005. The initial helium abundance was 
-determined by the linear enrichment law, $\Delta Y/Delta Z=1.5$.
+determined by the linear enrichment law, $\Delta Y/\Delta Z=1.5$.
 The considered envelope masses, $M_\mathrm{env}$,
 are in the range of 0.0001 − 0.0030 $M_\odot$, with a step of 0.0001 $M_\odot$, and
 0.003 − 0.010 $M_\odot$, with a step of 0.001 $M_\odot$. Central helium abundance, $Y_\mathrm{c}$, is in
