@@ -1,6 +1,7 @@
 # sdB Grid Viewer
-
-_sdB Grid Viewer_ is the tool to quickly inspect the grid of evolutionary
+ 
+[_sdB Grid Viewer_](https://sdb-grid-viewer.herokuapp.com)
+is the tool to quickly inspect the grid of evolutionary
 models of sdB stars calculated for
 the [ARDASTELLA](https://ardastella.up.krakow.pl/) research group.
 

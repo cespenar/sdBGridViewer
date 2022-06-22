@@ -652,4 +652,4 @@ def update_custom_plot(n_clicks,
 
 
 if __name__ == '__main__':
-    app.run_server(port=8085, debug=True)
+    app.run_server(port=8085, debug=False)
