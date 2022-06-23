@@ -95,3 +95,12 @@ _sdB Grid Viewer_ is created and maintained by
 [Jakub Ostrowski](https://github.com/cespenar). The app is built using
 Python [Dash](https://plotly.com) framework and the source code is available
 on [GitHub](https://github.com/cespenar/sdBGridViewer).
+
+## Acknowledgements
+
+***
+The author was financially supported by the Polish National Science Centre
+grant UMO-2017/26/E/ST9/00703. The grid of models was calculated using the
+resources provided by
+[Wrocław Centre for Networking and Supercomputing](https://www.wcss.pl/en/),
+grant No. 265.

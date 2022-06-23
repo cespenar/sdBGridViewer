@@ -1,5 +1,6 @@
 # sdB Grid Viewer
- 
+
+***
 [_sdB Grid Viewer_](https://sdb-grid-viewer.herokuapp.com)
 is the tool to quickly inspect the grid of evolutionary
 models of sdB stars calculated for
@@ -7,6 +8,7 @@ the [ARDASTELLA](https://ardastella.up.krakow.pl/) research group.
 
 ## Overview of the grid
 
+***
 The models were calculated using the set-up described
 by [Ostrowski et al. (2021)](https://ui.adsabs.harvard.edu/abs/2021MNRAS.503.4646O/abstract)
 , utilizing the computational resources provided
@@ -39,6 +41,7 @@ The full grid is not publicly available at the moment.
 
 ## Available data
 
+***
 The selection of columns available in _sdB Grid Viewer_:
 
 * **id** - id of a model
@@ -60,6 +63,8 @@ The selection of columns available in _sdB Grid Viewer_:
 * **L** - luminosity of a model (solar units)
 
 ## Usage
+
+***
 ### Settings
 
 Options in the menu:
@@ -82,3 +87,12 @@ and **R vs. Teff**, and also a **custom plot** that can be customized to show
 any grid columns accessible by _sdB Grid Viewer_. The custom plot also allows
 user to reverse axes and apply to them the base-10 logarithmic or exponential
 function.
+
+## Acknowledgements
+
+***
+The author was financially supported by the Polish National Science Centre
+grant UMO-2017/26/E/ST9/00703. The grid of models was calculated using the
+resources provided by
+[Wrocław Centre for Networking and Supercomputing](https://www.wcss.pl/en/),
+grant No. 265.
