@@ -21,7 +21,7 @@ Evolutionary models were calculated using the
 [2015](https://ui.adsabs.harvard.edu/abs/2015ApJS..220...15P/abstract),
 [2018](https://ui.adsabs.harvard.edu/abs/2018ApJS..234...34P/abstract),
 [2019](https://ui.adsabs.harvard.edu/abs/2019ApJS..243...10P/abstract)),
-version 11701, and supplemented by adiabatic non-radial pulsational models
+version 11701, and supplemented by adiabatic non-radial pulsation models
 calculated using the [GYRE](https://github.com/rhdtownsend/gyre) code
 ([Townsend & Teitler 2013](https://ui.adsabs.harvard.edu/abs/2013MNRAS.435.3406T/abstract)
 ,
@@ -87,6 +87,11 @@ and **R vs. Teff**, and also a **custom plot** that can be customized to show
 any grid columns accessible by _sdB Grid Viewer_. The custom plot also allows
 user to reverse axes and apply to them the base-10 logarithmic or exponential
 function.
+
+## Limitations
+
+***
+* The app does not support the small (smartphone) screens.
 
 ## Acknowledgements
 
