@@ -92,6 +92,7 @@ function.
 
 ***
 * The app does not support the small (smartphone) screens.
+* The initial start-up time might be slow, due to the limitation of the free Heroku tier.
 
 ## Acknowledgements
 
